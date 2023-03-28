@@ -73,3 +73,22 @@ In addition he is working on the registry cache implementation, as ReactOS doesn
 The Input Method Editor, sometimes abbreviated as IME, is a component that facilitates the typing of characters not originally present on the input devices by using a sequence of characters.
 IME in ReactOS has been for the most part a stub, but thankfully Katayama Hirofumi MZ has extensively worked on IME.
 This greatly helps with CJK support as well as allowing installation of custom IMEs for different locales.
+
+## Beyond the main tree
+ReactOS has always been more than just an operating system.
+We are a community of people focused around the Windows ecosystem — with various projects to research and document Windows internals, improve Windows support in applications, or otherwise make life easier for the broader Windows developer community.
+In fact, most developers likely had their first encounter with ReactOS not by downloading the operating system, but when looking up an undocumented API on the web and ending up in our [Doxygen-generated documentation](https://doxygen.reactos.org).
+
+Consequently, much work within the past two years also happened outside our main source tree, and it's worthwhile to take a look at that:
+
+Colin Finck has been trying out the Rust programming language for Windows development, and he has released multiple related libraries.  
+The first one, [nt-hive](https://github.com/ColinFinck/nt-hive), initially released in February 2021, implements a parser for the internal structures of Windows registry _hive_ files.  
+It was followed by [ntfs](https://github.com/ColinFinck/ntfs) in January 2022, a more ambitious project to provide an NTFS filesystem reader as a reusable building block for various scenarios.
+That library has been released at the virtual FOSDEM 2022 along with a [presentation on NTFS internals](https://archive.fosdem.org/2022/schedule/event/misc_ntfs_rust/).  
+The latest addition is [nt-list](https://github.com/ColinFinck/nt-list) later that year, which is a type-safe and idiomatic Rust wrapper around Windows Linked Lists (otherwise known as `LIST_ENTRY` and `SINGLE_LIST_ENTRY`).
+It has been [presented at EuroRust 2022](https://www.youtube.com/watch?v=IxhZIyXOIw8).  
+A library for parsing apiset DLLs is currently in the pipeline.
+
+Ultimately, these libraries shall all be used in a Rust-powered bootloader.
+But each of them can already be used now in various contexts, from low-level system development to user-mode applications.
+And this is already happening.
